@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS list_position (
     id INTEGER PRIMARY KEY,
     word_list_id INTEGER NOT NULL,
     word_id INTEGER NOT NULL,
-        FOREIGN KEY (word_list_id) REFERENCES word_list(id)
+        FOREIGN KEY (word_list_id) REFERENCES word_list(id),
         FOREIGN KEY (word_id) REFERENCES word(id)
 );
 

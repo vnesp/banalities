@@ -1,5 +1,7 @@
 # Телеграм-бот для игры в банальности
 
+[Схема базы](https://dbdesigner.page.link/wFPze6amsK3jXj276)
+
 * `create_base.sql` - sql-скрипт для создания базы
 * `dao` - data access object
   * `base.py` - объект базы
