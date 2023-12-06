@@ -5,6 +5,8 @@
 * `create_base.sql` - sql-скрипт для создания базы
 * `dao` - data access object
   * `base.py` - объект базы
+  * `abstract_object.py` - базовый класс для всех моделей
+  * `user.py` - модель User (пользователь)
 
 Создание базы
 

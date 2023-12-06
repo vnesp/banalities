@@ -6,20 +6,20 @@ CREATE TABLE IF NOT EXISTS user (
 
 
 CREATE TABLE IF NOT EXISTS state (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTO AUTOINCREMENT,
     descr VARCHAR(20) NOT NULL
 );
 
 
-INSERT INTO state
+INSERT INTO state (descr)
 VALUES
-    (0, 'created'),
-    (1, 'in progress'),
-    (2, 'finished');
+    ('created'),
+    ('in progress'),
+    ('finished');
 
 
 CREATE TABLE IF NOT EXISTS game (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     gm_id INTEGER NOT NULL,
     round_count INTEGER DEFAULT 5,
     state_id INTEGER NOT NULL,
@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS game (
 
 
 CREATE TABLE IF NOT EXISTS participation (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    score INTEGER DEFAULT 0,
     user_id INTEGER NOT NULL,
     game_id INTEGER NOT NULL,
         FOREIGN KEY (user_id) REFERENCES user(id),
@@ -38,13 +39,13 @@ CREATE TABLE IF NOT EXISTS participation (
 
 
 CREATE TABLE IF NOT EXISTS task (
-    id INTEGER PRIMARY KEY,
-    descr TEXT NOT NULL UNIQUE
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    descr VARCHAR(50) NOT NULL UNIQUE
 );
 
 
 CREATE TABLE IF NOT EXISTS turn (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     num INTEGER NOT NULL,
     words_count INTEGER DEFAULT 10,
     game_id INTEGER NOT NULL,
@@ -57,13 +58,13 @@ CREATE TABLE IF NOT EXISTS turn (
 
 
 CREATE TABLE IF NOT EXISTS word (
-    id INTEGER PRIMARY KEY,
-    word TEXT NOT NULL UNIQUE
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    word VARCHAR(30) NOT NULL UNIQUE
 );
 
 
 CREATE TABLE IF NOT EXISTS word_list (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     score INTEGER DEFAULT 0,
     participation_id INTEGER NOT NULL,
     turn_id INTEGER NOT NULL,
@@ -75,7 +76,7 @@ CREATE TABLE IF NOT EXISTS word_list (
 
 
 CREATE TABLE IF NOT EXISTS list_position (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     word_list_id INTEGER NOT NULL,
     word_id INTEGER NOT NULL,
         FOREIGN KEY (word_list_id) REFERENCES word_list(id),
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS list_position (
 
 
 CREATE TABLE IF NOT EXISTS ban_list_position (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     task_id INTEGER,
     word_id INTEGER,
         FOREIGN KEY (task_id) REFERENCES task(id),
